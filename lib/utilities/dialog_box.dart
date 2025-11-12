@@ -8,49 +8,52 @@ class DialogBox extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        Container(
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(25),
-            color: Color(0xFF121212),
+    return Padding(
+      padding: EdgeInsetsGeometry.fromLTRB(10, 0, 10, 60),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          AlertDialog(),
+          Text(
+            "New Task",
+            style: TextStyle(
+              color: Colors.grey[500],
+              letterSpacing: 1,
+              fontSize: 20,
+            ),
           ),
-          child: Padding(
-            padding: EdgeInsetsGeometry.fromLTRB(35, 0, 35, 0),
-            child: SizedBox(
-              height: 260,
-              child: Column(
-                children: [
-                  AlertDialog(),
-                  TextField(
-                    controller: controller,
-                    style: TextStyle(color: Colors.grey[300]),
-                    decoration: InputDecoration(
-                      hintText: "Enter New Task",
-                      hintStyle: TextStyle(color: Colors.grey[800]),
-                      enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                          width: 1.5,
-                          color: Colors.grey[900]!,
-                        ),
+          const SizedBox(height: 20),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              SizedBox(
+                width: 280,
+                child: TextField(
+                  controller: controller,
+                  style: TextStyle(color: Colors.grey[300]),
+                  decoration: InputDecoration(
+                    hintText: "Enter New Task",
+                    hintStyle: TextStyle(color: Colors.grey[800]),
+                    enabledBorder: OutlineInputBorder(
+                      borderSide: BorderSide(
+                        width: 2,
+                        color: Colors.grey[900]!,
                       ),
-                      focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                          width: 2,
-                          color: Colors.grey[800]!,
-                        ),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(
+                        width: 2,
+                        color: Colors.grey[800]!,
                       ),
                     ),
                   ),
-                  const SizedBox(height: 40),
-                  MyButton(btnName: "SAVE", onPressed: onSave),
-                ],
+                ),
               ),
-            ),
+              MyButton(icon: Icon(Icons.add), onPressed: onSave),
+            ],
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }

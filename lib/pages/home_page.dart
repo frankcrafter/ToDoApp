@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:todo_app/model/task.dart';
 import 'package:todo_app/utilities/dialog_box.dart';
+import 'package:todo_app/utilities/main_panel.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -11,13 +12,12 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   final _controller = TextEditingController();
-  int currentIndex = 0;
 
   List taskList = [
-    ['code new app', true],
-    ['get groceries', false],
-    ['go to the gym', false],
-    ['do homerwork', true],
+    ['code new app', false],
+    ['go gym', false],
+    ['do homework', true],
+    ['do shopping', false],
   ];
 
   // confirm Checkbox
@@ -50,6 +50,7 @@ class _HomePageState extends State<HomePage> {
     setState(() {
       showModalBottomSheet(
         context: context,
+        backgroundColor: Color(0xFF080808),
         builder: (context) {
           return DialogBox(controller: _controller, onSave: saveNewTask);
         },
@@ -69,7 +70,6 @@ class _HomePageState extends State<HomePage> {
         elevation: 0,
       ),
       floatingActionButton: SizedBox(
-        height: 50,
         child: ElevatedButton(
           style: ElevatedButton.styleFrom(
             textStyle: TextStyle(fontSize: 18, fontWeight: FontWeight.w400),
@@ -83,18 +83,30 @@ class _HomePageState extends State<HomePage> {
           child: Text("+  Add Task"),
         ),
       ),
-      body: ListView.builder(
-        itemCount: taskList.length,
-        itemBuilder: (context, index) {
-          return Task(
-            taskName: taskList[index][0],
-            isCompleted: taskList[index][1],
-            onDismissed: (direction) {
-              deleteTask(index);
-            },
-            onChanged: (value) => boxChecked(value, index),
-          );
-        },
+      body: Column(
+        children: [
+          MainPanel(
+            taskLeft: taskList
+                .where((taskList) => !taskList[1] == false)
+                .length,
+            taskAmount: taskList.length,
+          ),
+          Expanded(
+            child: ListView.builder(
+              itemCount: taskList.length,
+              itemBuilder: (context, index) {
+                return Task(
+                  taskName: taskList[index][0],
+                  isCompleted: taskList[index][1],
+                  onDismissed: (direction) {
+                    deleteTask(index);
+                  },
+                  onChanged: (value) => boxChecked(value, index),
+                );
+              },
+            ),
+          ),
+        ],
       ),
     );
   }

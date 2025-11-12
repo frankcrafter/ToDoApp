@@ -16,7 +16,7 @@ class Task extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsetsGeometry.fromLTRB(15, 15, 15, 0),
+      padding: EdgeInsetsGeometry.fromLTRB(20, 15, 20, 0),
       child: Dismissible(
         key: Key(taskName),
         direction: DismissDirection.endToStart,
@@ -28,15 +28,15 @@ class Task extends StatelessWidget {
             borderRadius: BorderRadiusDirectional.circular(5),
           ),
           child: Padding(
-            padding: EdgeInsetsGeometry.fromLTRB(10, 15, 10, 15),
+            padding: EdgeInsetsGeometry.fromLTRB(0, 15, 0, 15),
             child: Row(
               children: [
                 Transform.scale(
-                  scale: 1.2,
+                  scale: 1,
                   child: Checkbox(
                     side: BorderSide(color: Colors.grey[400]!, width: 1),
                     shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadiusGeometry.circular(4),
+                      borderRadius: BorderRadiusGeometry.circular(3),
                     ),
                     activeColor: Colors.transparent,
                     checkColor: Colors.grey[200],
@@ -50,14 +50,14 @@ class Task extends StatelessWidget {
                     taskName.toUpperCase(),
                     style: TextStyle(
                       color: Colors.grey[200]!.withOpacity(
-                        isCompleted ? 0.6 : 1.0,
+                        isCompleted ? 0.7 : 1.0,
                       ),
                       fontSize: 16,
                       decoration: isCompleted
                           ? TextDecoration.lineThrough
                           : TextDecoration.none,
-                      decorationColor: Colors.grey[400],
-                      decorationThickness: 2,
+                      decorationColor: Colors.grey[500],
+                      decorationThickness: 1.5,
                     ),
                   ),
                 ),

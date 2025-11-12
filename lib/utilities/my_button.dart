@@ -1,32 +1,22 @@
 import 'package:flutter/material.dart';
 
 class MyButton extends StatelessWidget {
-  final String btnName;
+  final Icon icon;
   final VoidCallback onPressed;
-  const MyButton({super.key, required this.btnName, required this.onPressed});
+  const MyButton({super.key, required this.icon, required this.onPressed});
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: 230,
-      height: 60,
-      child: ElevatedButton(
-        style: ElevatedButton.styleFrom(
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadiusGeometry.circular(5),
-          ),
-          backgroundColor: Colors.grey[900],
-          foregroundColor: Colors.grey[200],
+      child: FloatingActionButton(
+        backgroundColor: Colors.transparent,
+        foregroundColor: Colors.grey[300],
+        shape: RoundedRectangleBorder(
+          side: BorderSide(width: 2, color: Colors.grey[900]!),
+          borderRadius: BorderRadius.circular(3),
         ),
         onPressed: onPressed,
-        child: Text(
-          btnName,
-          style: TextStyle(
-            fontWeight: FontWeight.w600,
-            fontSize: 13,
-            letterSpacing: 2,
-          ),
-        ),
+        child: icon,
       ),
     );
   }
