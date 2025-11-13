@@ -24,12 +24,12 @@ class DialogBox extends StatelessWidget {
           Text(
             "New Task",
             style: TextStyle(
-              color: Colors.grey[500],
-              letterSpacing: 1,
-              fontSize: 20,
+              color: Colors.grey[350],
+              letterSpacing: 2,
+              fontSize: 23,
             ),
           ),
-          const SizedBox(height: 20),
+          const SizedBox(height: 30),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
